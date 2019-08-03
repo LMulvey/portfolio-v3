@@ -1,10 +1,15 @@
 import React, { Fragment } from 'react';
 import { graphql } from 'gatsby';
+import styled from 'styled-components';
 import Img from 'gatsby-image';
 import MDXRenderer from 'gatsby-mdx/mdx-renderer';
 
 import Layout from '../components/Layout';
 import Link from '../components/Link';
+
+const AuthorAndDate = styled.p`
+  text-align: right;
+`
 
 const CategoryList = ({ list = [] }) => (
   <Fragment>
@@ -26,7 +31,7 @@ export default function Post({
   return (
     <Layout site={site} frontmatter={mdx.frontmatter}>
       <h1>{mdx.frontmatter.title}</h1>
-      <h2>{mdx.frontmatter.date}</h2>
+      <AuthorAndDate><em>Written by {mdx.frontmatter.author} on {mdx.frontmatter.date}</em></AuthorAndDate>
 
       {mdx.frontmatter.banner && (
         <Img
@@ -67,6 +72,7 @@ export const pageQuery = graphql`
     mdx(fields: { id: { eq: $id } }) {
       frontmatter {
         title
+        author
         date(formatString: "MMMM DD, YYYY")
         banner {
           childImageSharp {

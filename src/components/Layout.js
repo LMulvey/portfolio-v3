@@ -1,45 +1,12 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
 import { MDXProvider } from '@mdx-js/react';
-import { createGlobalStyle } from 'styled-components';
-
 import 'prismjs/themes/prism-okaidia.css';
 
-import Link from './Link';
+import Header from './Header';
+import { GlobalStyles, PageWrapper } from './styles'
 import { MDXLayoutComponents, MDXGlobalComponents } from './mdx';
-
-const GlobalStyle = createGlobalStyle`
-  html, body {
-    margin: 0;
-    padding: 0;
-  }
-
-  ${() => {
-    /* Override PrismJS Defaults */ return null;
-  }}
-
-  pre {
-    background-color: #2f1e2e !important;
-    border-radius: 4px;
-    font-size: 14px;
-  }
-
-  .gatsby-highlight-code-line {
-    background-color: #4f424c;
-    display: block;
-    margin-right: -1em;
-    margin-left: -1em;
-    padding-right: 1em;
-    padding-left: 1em;
-  }
-`;
-
-const NAVIGATION = [
-  { to: '/', label: 'About' },
-  { to: '/blog', label: 'Blog' },
-  { to: 'https://roadtoreact.com', label: 'Courses' },
-];
 
 export default ({ site, frontmatter = {}, children }) => {
   const {
@@ -57,7 +24,7 @@ export default ({ site, frontmatter = {}, children }) => {
   const description = frontmatterDescription || siteDescription;
 
   return (
-    <Fragment>
+    <>
       <Helmet
         title={title}
         meta={[
@@ -66,29 +33,29 @@ export default ({ site, frontmatter = {}, children }) => {
         ]}
       >
         <html lang="en" />
+            <link
+              rel="stylesheet"
+              href="https://use.typekit.net/mxs6bub.css"
+            />
+            <script
+              defer
+              src="https://pro.fontawesome.com/releases/v5.0.10/js/all.js"
+              integrity="sha384-+1nLPoB0gaUktsZJP+ycZectl3GX7wP8Xf2PE/JHrb7X1u7Emm+v7wJMbAcPr8Ge"
+              crossorigin="anonymous"
+            />
       </Helmet>
-
-      <GlobalStyle />
-
+      <GlobalStyles />
+          <Header />
+          <PageWrapper>
       <MDXProvider
         components={{
           ...MDXLayoutComponents,
           ...MDXGlobalComponents,
-        }}
-      >
-        <Fragment>
-          <ul>
-            {NAVIGATION.map(navigation => (
-              <li key={navigation.label}>
-                <Link to={navigation.to}>{navigation.label}</Link>
-              </li>
-            ))}
-          </ul>
-
+        }}>
           {children}
-        </Fragment>
       </MDXProvider>
-    </Fragment>
+      </PageWrapper>
+    </>
   );
 };
 

@@ -1,15 +1,28 @@
 module.exports = {
   pathPrefix: '/',
   siteMetadata: {
-    siteUrl: 'https://www.robinwieruch.de/',
-    author: 'Robin Wieruch',
-    title: 'Gatsby MDX Starter Project',
-    description: 'My Gatsby MDX Starter Project',
+    siteUrl: 'http://www.leemulvey.com',
+    author: 'Lee Mulvey',
+    title: 'Lee Mulvey | Web Developer',
+    description: 'Lee Mulvey is a web developer from Calgary, Alberta with experience in full-stack development including JavaScript, React, Redux, ES6, HTML, CSS, NextJS, GraphQL',
     keywords: [
-      'Software Engineer',
-      'Web Developer',
-      'Consultant',
-      'Freelancer',
+      'web developer',
+      'developer',
+      'freelance',
+      'react',
+      'redux',
+      'node',
+      'javascript',
+      'css',
+      'html',
+      'ruby',
+      'rails',
+      'postgresql',
+      'mongodb',
+      'gatsby',
+      'graphql',
+      'gql',
+      'software engineer',
     ],
   },
   plugins: [
@@ -49,15 +62,21 @@ module.exports = {
     'gatsby-plugin-catch-links',
     'gatsby-plugin-react-helmet',
     {
+      resolve: 'gatsby-plugin-typography',
+      options: {
+        pathToConfigModule: 'src/utils/typography'
+      }
+    },
+    {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: 'A learning, teaching and writing software engineer',
-        short_name: 'RWieruch',
+        name: 'Lee Mulvey is a web developer from Calgary, Alberta with experience in full-stack development including JavaScript, React, Redux, ES6, HTML, CSS, NextJS, GraphQL',
+        short_name: 'LMulvey',
         start_url: '/',
         background_color: '#fff',
         theme_color: '#525dce',
         display: 'standalone',
-        icon: 'assets/logo.png',
+        icon: 'assets/favicon.ico',
       },
     },
     'gatsby-plugin-offline',

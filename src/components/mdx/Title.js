@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default styled.h1`
+export default styled.h2`
   text-align: center;
   font-size: 24px;
   font-weight: 400;
