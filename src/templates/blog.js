@@ -42,7 +42,7 @@ const Blog = ({
 
           <Col md={12} lg={post.frontmatter.banner ? 8 : 12}>
             <StyledTitle>
-              <Link to={post.frontmatter.slug}>
+              <Link to={`/${post.frontmatter.slug}`}>
                 {post.frontmatter.title}
               </Link>
             </StyledTitle>

@@ -17,7 +17,7 @@ const AuthorAndDate = styled.p`
 
 const TitleContainer = styled.div`
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   justify-content: space-between;
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
   padding-bottom: 22px;
@@ -29,6 +29,9 @@ const Title = styled.h1`
   border-bottom: 0;
   padding: 0;
   margin: 0;
+  margin-right: 25px;
+  min-width: 250px;
+
   &:hover {
     cursor: pointer;
   }
@@ -181,6 +184,7 @@ export default function Post({
           <a
             role="button"
             aria-label="Copy Post URI to Clipboard"
+            href="#"
             onClick={copyToClipboard}
           >
             {mdx.frontmatter.title}
