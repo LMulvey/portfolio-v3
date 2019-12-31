@@ -1,6 +1,7 @@
 const path = require('path');
+const { createFilePath } = require('gatsby-source-filesystem');
 
-const PAGINATION_OFFSET = 2;
+const PAGINATION_OFFSET = 5;
 
 const pluckCategories = edges =>
   Object.keys(
@@ -28,14 +29,13 @@ const groupByCategory = edges =>
 
 const createCategoryPages = (createPage, edges) => {
   const categories = pluckCategories(edges);
-
   const posts = groupByCategory(edges);
 
   Object.keys(posts).forEach(category => {
     createPaginatedPages(
       createPage,
       posts[category],
-      `/categories/${category}`,
+      `/blog/categories/${category}`,
       { categories, activeCategory: category },
     );
   });
@@ -60,8 +60,22 @@ const createPosts = (createPage, edges) => {
 
 const createBlog = (createPage, edges) => {
   const categories = pluckCategories(edges);
-
   createPaginatedPages(createPage, edges, '/blog', { categories });
+};
+
+const createProjects = (createPage, edges) => {
+  const projectTemplate = path.resolve(
+    `src/templates/project-page.js`,
+  );
+  edges.forEach(edge => {
+    createPage({
+      path: `/projects${edge.node.fields.slug}`, // required
+      component: projectTemplate,
+      context: {
+        slug: edge.node.fields.slug,
+      },
+    });
+  });
 };
 
 const createPaginatedPages = (
@@ -72,7 +86,6 @@ const createPaginatedPages = (
 ) => {
   const pages = edges.reduce((acc, value, index) => {
     const pageIndex = Math.floor(index / PAGINATION_OFFSET);
-
     if (!acc[pageIndex]) {
       acc[pageIndex] = [];
     }
@@ -117,6 +130,7 @@ exports.createPages = ({ actions, graphql }) =>
               title
               slug
               categories
+              isProject
             }
             code {
               scope
@@ -131,10 +145,25 @@ exports.createPages = ({ actions, graphql }) =>
     }
 
     const { edges } = data.allMdx;
+    const blogEdges = edges.filter(
+      ({
+        node: {
+          fields: { isProject = false },
+        },
+      }) => !isProject,
+    );
+    const projectEdges = edges.filter(
+      ({
+        node: {
+          fields: { isProject = false },
+        },
+      }) => isProject,
+    );
 
-    createBlog(actions.createPage, edges);
-    createPosts(actions.createPage, edges);
-    createCategoryPages(actions.createPage, edges);
+    createBlog(actions.createPage, blogEdges);
+    createPosts(actions.createPage, blogEdges);
+    createCategoryPages(actions.createPage, blogEdges);
+    createProjects(actions.createPage, projectEdges);
   });
 
 exports.onCreateWebpackConfig = ({ actions }) => {
@@ -150,9 +179,34 @@ exports.onCreateWebpackConfig = ({ actions }) => {
 
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions;
+  const isMdx = node.internal.type === 'Mdx';
 
-  if (node.internal.type === `Mdx`) {
+  if (isMdx) {
     const parent = getNode(node.parent);
+    const isProject = node.frontmatter.isProject || false;
+    const static = node.frontmatter.static || false;
+    const slug = createFilePath({
+      node,
+      getNode,
+      basePath: 'projects',
+    }).toLowerCase();
+
+    createNodeField({
+      node,
+      name: 'isProject',
+      value: isProject,
+    });
+
+    createNodeField({
+      node,
+      name: 'static',
+      value: static,
+    });
+    createNodeField({
+      node,
+      name: 'isProject',
+      value: isProject,
+    });
 
     createNodeField({
       name: 'id',
@@ -167,27 +221,27 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     });
 
     createNodeField({
-      name: 'description',
-      node,
-      value: node.frontmatter.description,
-    });
-
-    createNodeField({
-      name: 'slug',
-      node,
-      value: node.frontmatter.slug,
-    });
-
-    createNodeField({
       name: 'date',
       node,
       value: node.frontmatter.date || '',
     });
 
     createNodeField({
+      name: 'description',
+      node,
+      value: node.frontmatter.description || '',
+    });
+
+    createNodeField({
+      name: 'slug',
+      node,
+      value: node.frontmatter.slug || slug,
+    });
+
+    createNodeField({
       name: 'banner',
       node,
-      banner: node.frontmatter.banner,
+      banner: node.frontmatter.banner || '',
     });
 
     createNodeField({

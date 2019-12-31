@@ -1,84 +1,108 @@
-import React, { Fragment } from 'react';
-import { graphql } from 'gatsby';
+import React from 'react';
+import styled from 'styled-components';
+import { graphql, navigate } from 'gatsby';
+import { Row, Col } from 'react-grid-system';
 import Img from 'gatsby-image';
 
 import Layout from '../components/Layout';
-import Link from '../components/Link';
-
-const Categories = ({ categories }) => (
-  <Fragment>
-    <ul>
-      {categories.map(category => (
-        <li key={category}>
-          <Link to={`/categories/${category}`}>{category}</Link>
-        </li>
-      ))}
-    </ul>
-  </Fragment>
-);
+import Link from '../components/Layout/mdx/Link';
+import { CategoryList } from './post';
 
 const Blog = ({
+  location: { pathname },
   data: { site, allMdx },
-  pageContext: { pagination, categories },
+  pageContext: { pagination },
 }) => {
   const { page, nextPagePath, previousPagePath } = pagination;
-
-  const posts = page.map(id =>
-    allMdx.edges.find(edge => edge.node.id === id),
-  );
+  const posts = page
+    .map(id => allMdx.edges.find(edge => edge.node.id === id))
+    .filter(
+      ({
+        node: {
+          fields: { static: isStatic },
+        },
+      }) => !isStatic,
+    );
 
   return (
-    <Layout site={site}>
-      <div>
-        All categories on the blog:{' '}
-        <Categories categories={categories} />
-      </div>
-
+    <Layout site={site} pathname={pathname}>
       {posts.map(({ node: post }) => (
-        <div key={post.id}>
+        <Post
+          key={post.id}
+          align="center"
+          onClick={() => navigate(post.frontmatter.slug)}
+        >
           {post.frontmatter.banner && (
-            <Img
-              sizes={post.frontmatter.banner.childImageSharp.sizes}
-            />
+            <ImageContainer md={12} lg={4}>
+              <Img
+                fluid={post.frontmatter.banner.childImageSharp.fluid}
+              />
+            </ImageContainer>
           )}
 
-          <h2>
-            <Link to={post.frontmatter.slug}>
-              {post.frontmatter.title}
-            </Link>
-          </h2>
-
-          <small>{post.frontmatter.date}</small>
-
-          <p>{post.excerpt}</p>
-
-          <Link to={post.frontmatter.slug}>Continue Reading</Link>
-        </div>
+          <Col md={12} lg={post.frontmatter.banner ? 8 : 12}>
+            <StyledTitle>
+              <Link to={post.frontmatter.slug}>
+                {post.frontmatter.title}
+              </Link>
+            </StyledTitle>
+            <small>{post.frontmatter.date}</small>
+            <p>{post.frontmatter.description}</p>
+            <CategoryList
+              list={post.frontmatter.categories}
+              isSmall
+            />
+          </Col>
+        </Post>
       ))}
 
-      <hr />
-
-      <div>
-        Pagination:
-        <ul>
-          {nextPagePath && (
-            <li>
-              <Link to={nextPagePath}>Next Page</Link>
-            </li>
-          )}
-
+      {nextPagePath || previousPagePath ? (
+        <Row style={{ marginTop: '25px' }}>
+          {nextPagePath && <Link to={nextPagePath}>Next Page</Link>}
+          {nextPagePath && previousPagePath ? ' | ' : null}
           {previousPagePath && (
-            <li>
-              <Link to={previousPagePath}>Previous Page</Link>
-            </li>
+            <Link to={previousPagePath}>Previous Page</Link>
           )}
-        </ul>
-      </div>
+        </Row>
+      ) : null}
     </Layout>
   );
 };
 
 export default Blog;
+
+const Post = styled(Row)`
+  padding: 25px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease-in-out;
+  transition-property: background-color, transform, box-shadow;
+
+  &:hover {
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    transform: scale(1.02);
+    border-radius: 6px;
+    background-color: #b2cfe0;
+  }
+`;
+
+const ImageContainer = styled(Col)`
+  width: 100%;
+  max-width: 300px;
+  padding: 15px 0;
+  height: 100%;
+  max-height: 300px;
+  object-fit: contain;
+  overflow: hidden;
+`;
+
+const StyledTitle = styled.h2`
+  line-height: 2rem;
+  margin-bottom: 0.5rem;
+  @media screen and (max-width: 640px) {
+    font-size: 1.3rem;
+  }
+`;
 
 export const pageQuery = graphql`
   query {
@@ -88,19 +112,22 @@ export const pageQuery = graphql`
     allMdx {
       edges {
         node {
-          excerpt(pruneLength: 300)
           id
+          fields {
+            static
+          }
           frontmatter {
             title
             date(formatString: "MMMM DD, YYYY")
             banner {
               childImageSharp {
-                sizes(maxWidth: 720) {
-                  ...GatsbyImageSharpSizes
+                fluid(maxWidth: 720) {
+                  ...GatsbyImageSharpFluid_noBase64
                 }
               }
             }
             slug
+            description
             categories
             keywords
           }

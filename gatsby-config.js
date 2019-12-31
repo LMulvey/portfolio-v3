@@ -4,7 +4,8 @@ module.exports = {
     siteUrl: 'http://www.leemulvey.com',
     author: 'Lee Mulvey',
     title: 'Lee Mulvey | Web Developer',
-    description: 'Lee Mulvey is a web developer from Calgary, Alberta with experience in full-stack development including JavaScript, React, Redux, ES6, HTML, CSS, NextJS, GraphQL',
+    description:
+      'Lee Mulvey is a web developer from Calgary, Alberta with experience in full-stack development including JavaScript, React, Redux, ES6, HTML, CSS, NextJS, GraphQL',
     keywords: [
       'web developer',
       'developer',
@@ -31,6 +32,19 @@ module.exports = {
       options: {
         path: `${__dirname}/content/blog`,
         name: 'blog',
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        path: `${__dirname}/content/projects`,
+        name: 'projects',
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-disqus',
+      options: {
+        shortname: 'leemulvey-com',
       },
     },
     {
@@ -64,19 +78,20 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-typography',
       options: {
-        pathToConfigModule: 'src/utils/typography'
-      }
+        pathToConfigModule: 'src/utils/typography',
+      },
     },
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: 'Lee Mulvey is a web developer from Calgary, Alberta with experience in full-stack development including JavaScript, React, Redux, ES6, HTML, CSS, NextJS, GraphQL',
+        name:
+          'Lee Mulvey is a web developer from Calgary, Alberta with experience in full-stack development including JavaScript, React, Redux, ES6, HTML, CSS, NextJS, GraphQL',
         short_name: 'LMulvey',
         start_url: '/',
         background_color: '#fff',
         theme_color: '#525dce',
         display: 'standalone',
-        icon: 'assets/favicon.ico',
+        icon: 'assets/icon.png',
       },
     },
     'gatsby-plugin-offline',

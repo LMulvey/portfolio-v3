@@ -1,15 +1,23 @@
 ---
-slug: "blog/serverless-appsync-mapping-templates"
-date: "2019-07-19"
-title: "API Gateway - Mapping Templates with Serverless"
-author: "Lee"
-description: "Let's talk about AppSync VTL Mapping Templates 🗺"
-categories: ["aws", "appsync", "serverless", "lambda", "aws lambda"]
-keywords: ["serverless", "appsync", "aws", "amazon", "mapping templates", "lambda"]
-banner: "./images/banner.jpg"
+slug: 'blog/serverless-appsync-mapping-templates'
+date: '2019-07-19'
+title: 'API Gateway - Mapping Templates with Serverless'
+author: 'Lee'
+description: "Let's have a chat about AppSync VTL Mapping Templates 🗺"
+categories: ['aws', 'appsync', 'serverless', 'lambda', 'aws lambda']
+keywords:
+  [
+    'serverless',
+    'appsync',
+    'aws',
+    'amazon',
+    'mapping templates',
+    'lambda',
+  ]
+banner: './images/banner.jpg'
 ---
 
-As previously discussed in my [other Serverless post](https://leemulvey.com/blog/AWS-AppSync-Serverless-Lambdas/), *Mapping Templates* are a way for AWS services to prepare requests for data sources and prepare the response to the API consumer. I ran across a project recently where I was tasked with using an API Gateway to hit an AWS Lambda function, however, that gateway needed to forward query parameters to the Lambda so it could be processed.
+As previously discussed in my [other Serverless post](https://leemulvey.com/blog/AWS-AppSync-Serverless-Lambdas/), _Mapping Templates_ are a way for AWS services to prepare requests for data sources and prepare the response to the API consumer. I ran across a project recently where I was tasked with using an API Gateway to hit an AWS Lambda function, however, that gateway needed to forward query parameters to the Lambda so it could be processed.
 
 This task would be easy in enough in most cases, however, with AWS, you must use Apache's Velocity Templates to formuate a Mapping Template for AWS. You can generate these (somewhat) through the AWS console, and you can certainly modify them in there. BUT! The point of Serverless is to avoid the console, make it easy to deploy, and allow more hands in the pot. In my particular use case, I needed to develop a POC on my own AWS account and then have it deployed on the clients. It's
 much easier in this case to prepare a `serverless.yml` file and swap creds for the client. Now, first, let's say we have this mapping template. I'm not going into the syntax for mapping templates in this post (future post, maybe). Though, try to step through it and I think you'll understand!:
@@ -67,4 +75,4 @@ functions:
 
 And that's it! On your next deploy, your mapping template will be assigned in the console to your API Gateway for the path specified in your function. Serverless is awesome (I swear I'm not sponsored by them).
 
-If you have any questions, drop them in the comments. Hoping this helps some people out who are looking for answers as this was *not* easy to find! ✌🏻
+If you have any questions, drop them in the comments. Hoping this helps some people out who are looking for answers as this was _not_ easy to find! ✌🏻

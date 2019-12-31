@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const HeaderButton = ({ link, icon, title, theme }) => (
-  <a href={link} target="_blank" rel="noopener noreferrer">
+const HeaderButton = ({ link, icon, title, theme, ...others }) => (
+  <a href={link} rel="noopener noreferrer" {...others}>
     <Button theme={theme}>
       <i className={`${icon} fa-fw`} /> {title}
     </Button>
@@ -11,25 +11,25 @@ const HeaderButton = ({ link, icon, title, theme }) => (
 
 const Button = styled.button`
   margin: 5px 10px;
-  padding: 5px;
+  padding: 5px 10px;
   background: rgba(255, 255, 255, 0.5);
   border-radius: 6px;
   border: none;
   color: rgba(0, 0, 0, 0.8);
-  transition: all 75ms ease-in;
+  transition: all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
   transition-property: border, background-color, color, transform;
   cursor: pointer;
 
   & ${props => props.icon}.fa-fw {
     color: ${props => props.theme.main};
-    transition: all 75ms ease-in;
+    transition: all 125ms ease-in;
     transition-property: border, background-color, color, transform;
   }
 
   :hover {
     background-color: ${props => props.theme.main};
     color: ${props => props.theme.contrast};
-    transform: scale(1.04);
+    transform: scale(1.2);
     & ${props => props.icon}.fa-fw {
       color: ${props => props.theme.contrast};
     }

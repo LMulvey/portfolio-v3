@@ -1,7 +1,7 @@
 import React from 'react';
-import { graphql } from 'gatsby';
+import { graphql, StaticQuery } from 'gatsby';
 
-import Link from '../components/Link';
+import Link from '../components/Layout/mdx/Link';
 import Layout from '../components/Layout';
 
 const CategoryItem = ({ postsByCategory, category }) => (
@@ -44,19 +44,24 @@ const CategoryList = ({ postsByCategories }) => (
   </div>
 );
 
-export default function Categories({ data: { site }, pageContext }) {
+export default function Categories() {
   return (
-    <Layout site={site}>
-      {pageContext.category ? (
-        <CategoryItem {...pageContext} />
-      ) : (
-        <CategoryList {...pageContext} />
+    <StaticQuery
+      query={pageQuery}
+      render={({ data: { site }, pageContext }) => (
+        <Layout site={site}>
+          {pageContext.category ? (
+            <CategoryItem {...pageContext} />
+          ) : (
+            <CategoryList {...pageContext} />
+          )}
+        </Layout>
       )}
-    </Layout>
+    />
   );
 }
 
-export const pageQuery = graphql`
+const pageQuery = graphql`
   query {
     site {
       ...site
