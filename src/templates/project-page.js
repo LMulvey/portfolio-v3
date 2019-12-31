@@ -9,7 +9,7 @@ import {
 } from 'react-grid-system';
 import styled from 'styled-components';
 import Carousel from 'nuka-carousel';
-import MDXRenderer from 'gatsby-mdx/mdx-renderer';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
 
 import Layout from '../components/Layout';
 import { sortByDate } from '../helpers/sort';
@@ -40,7 +40,7 @@ export default ({ data }) => {
         technologies,
         photos,
       },
-      code: { body },
+      body,
     },
     site,
   } = data;
@@ -344,9 +344,7 @@ export const query = graphql`
         technologies
         photos
       }
-      code {
-        body
-      }
+      body
     }
     allMdx(
       filter: {

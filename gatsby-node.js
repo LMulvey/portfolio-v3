@@ -132,9 +132,7 @@ exports.createPages = ({ actions, graphql }) =>
               categories
               isProject
             }
-            code {
-              scope
-            }
+            body
           }
         }
       }

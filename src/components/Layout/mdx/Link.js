@@ -1,14 +1,14 @@
 import React from 'react';
-import GatsbyLink from 'gatsby-link';
+import { Link } from 'gatsby';
 
-const Link = ({ children, to, ...other }) => {
+const LinkWrapper = ({ children, to, ...other }) => {
   const internal = /^\/(?!\/)/.test(to);
 
   if (internal) {
     return (
-      <GatsbyLink to={to} {...other}>
+      <Link to={to} {...other}>
         {children}
-      </GatsbyLink>
+      </Link>
     );
   }
 
@@ -19,4 +19,4 @@ const Link = ({ children, to, ...other }) => {
   );
 };
 
-export default Link;
+export default LinkWrapper;

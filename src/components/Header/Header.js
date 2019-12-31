@@ -78,6 +78,7 @@ const Header = ({ pathname = '' }) => {
           <Link to="/" style={{ textDecoration: 'none' }}>
             <LogoContainer
               onMouseOver={handleMouseOver}
+              onFocus={handleMouseOver}
               onMouseLeave={handleMouseOut}
               onTouchStart={handleMouseOver}
               onTouchEnd={handleMouseOut}

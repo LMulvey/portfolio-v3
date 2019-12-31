@@ -15,6 +15,8 @@ keywords:
     'lambda',
   ]
 banner: './images/banner.jpg'
+photographer: 'Taylor Vick via Unsplash'
+photographerUrl: 'https://unsplash.com/@tvick?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText'
 ---
 
 As previously discussed in my [other Serverless post](https://leemulvey.com/blog/AWS-AppSync-Serverless-Lambdas/), _Mapping Templates_ are a way for AWS services to prepare requests for data sources and prepare the response to the API consumer. I ran across a project recently where I was tasked with using an API Gateway to hit an AWS Lambda function, however, that gateway needed to forward query parameters to the Lambda so it could be processed.

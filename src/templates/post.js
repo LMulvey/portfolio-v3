@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { graphql } from 'gatsby';
 import styled, { keyframes } from 'styled-components';
 import Img from 'gatsby-image';
-import MDXRenderer from 'gatsby-mdx/mdx-renderer';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { Disqus } from 'gatsby-plugin-disqus';
 
 import Layout from '../components/Layout';
@@ -17,6 +17,8 @@ const AuthorAndDate = styled.p`
 
 const TitleContainer = styled.div`
   display: flex;
+  position: relative;
+
   flex-flow: row wrap;
   justify-content: space-between;
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
@@ -25,7 +27,6 @@ const TitleContainer = styled.div`
 `;
 
 const Title = styled.h1`
-  position: relative;
   border-bottom: 0;
   padding: 0;
   margin: 0;
@@ -175,12 +176,12 @@ export default function Post({
       useWhitePageWrapper
     >
       <TitleContainer>
+        {copyAnim ? (
+          <CopiedMessage copyAnimMs={copyAnimMs}>
+            Copied Post URL to Clipboard!
+          </CopiedMessage>
+        ) : null}
         <Title>
-          {copyAnim ? (
-            <CopiedMessage copyAnimMs={copyAnimMs}>
-              Copied Post URL to Clipboard!
-            </CopiedMessage>
-          ) : null}
           <a
             role="button"
             aria-label="Copy Post URI to Clipboard"
@@ -213,7 +214,7 @@ export default function Post({
         </BannerContainer>
       )}
 
-      <MDXRenderer>{mdx.code.body}</MDXRenderer>
+      <MDXRenderer>{mdx.body}</MDXRenderer>
 
       <div>
         <CategoryList list={mdx.fields.categories} />
@@ -276,9 +277,7 @@ export const pageQuery = graphql`
         categories
         keywords
       }
-      code {
-        body
-      }
+      body
     }
   }
 `;
