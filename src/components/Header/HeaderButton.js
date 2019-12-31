@@ -1,12 +1,13 @@
 import React from 'react';
+import Link from '../Layout/mdx/Link';
 import styled from 'styled-components';
 
 const HeaderButton = ({ link, icon, title, theme, ...others }) => (
-  <a href={link} rel="noopener noreferrer" {...others}>
+  <Link to={link} rel="noopener noreferrer" {...others}>
     <Button theme={theme}>
       <i className={`${icon} fa-fw`} /> {title}
     </Button>
-  </a>
+  </Link>
 );
 
 const Button = styled.button`
