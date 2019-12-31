@@ -11,7 +11,7 @@ import { CategoryList } from './post';
 const Blog = ({
   location: { pathname },
   data: { site, allMdx },
-  pageContext: { pagination },
+  pageContext: { pagination, category },
 }) => {
   const { page, nextPagePath, previousPagePath } = pagination;
   const posts = page
@@ -76,6 +76,7 @@ const Post = styled(Row)`
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
   transition: all 0.2s ease-in-out;
   transition-property: background-color, transform, box-shadow;
+  pointer-events: none;
 
   &:hover {
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);

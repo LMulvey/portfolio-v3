@@ -225,14 +225,18 @@ export default function Post({
             {prev && (
               <span>
                 Previous:{' '}
-                <Link to={prev.fields.slug}>{prev.fields.title}</Link>
+                <Link to={`/${prev.fields.slug}`}>
+                  {prev.fields.title}
+                </Link>
               </span>
             )}
             {next && prev && ' | '}
             {next && (
               <span>
                 Next:{' '}
-                <Link to={next.fields.slug}>{next.fields.title}</Link>
+                <Link to={`/${next.fields.slug}`}>
+                  {next.fields.title}
+                </Link>
               </span>
             )}
           </>
