@@ -21,13 +21,14 @@ export default function Index(props) {
             <h2>Hey, I'm Lee!</h2>
             <p>
               I’m a Senior Web Developer with{' '}
-              <Link to="https://www.criticalmass.com" target="_blank">
+              <Link to="https://www.criticalmass.com" target="_blank" rel="noreferrer">
                 Critical Mass
               </Link>{' '}
               and a mentor/instructor with{' '}
               <Link
                 to="https://www.lighthouselabs.ca"
                 target="_blank"
+                rel="noreferrer"
               >
                 Lighthouse Labs
               </Link>
