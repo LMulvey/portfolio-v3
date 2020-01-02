@@ -48,10 +48,6 @@ export default ({
           ]}
         >
           <html lang="en" />
-          <link
-            rel="stylesheet"
-            href="https://use.typekit.net/mxs6bub.css"
-          />
           <script
             defer
             src="https://pro.fontawesome.com/releases/v5.0.10/js/all.js"

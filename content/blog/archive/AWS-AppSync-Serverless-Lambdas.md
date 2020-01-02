@@ -20,7 +20,7 @@ There's another nifty plugin to allow AppSync integration, [serverless-appsync-p
 
 AppSync uses Apache Velocity Templates to resolve your GraphQL fields. Basically, when it receives a GQL request, it'll look at the field of that request, and then look in your config for a Request Mapping Template entry to determine what to do. Those look like this:
 
-```
+```bash
 - dataSource: MusicHandler
   type: Query
   field: getTracks
@@ -30,7 +30,7 @@ AppSync uses Apache Velocity Templates to resolve your GraphQL fields. Basically
 
 From there, it'll hit the actual _request_ template to formulate a response. A `<field>-request.vtl` would look like this:
 
-```
+```bash
 {
     "version": "2017-02-28",
     "operation": "Invoke",

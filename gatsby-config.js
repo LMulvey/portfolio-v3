@@ -49,6 +49,15 @@ module.exports = {
         name: 'assets',
       },
     },
+    
+    {
+      resolve: 'gatsby-plugin-web-font-loader',
+      options: {
+        typekit: {
+          id: 'mxs6bub'
+        }
+      }
+    },
     {
       resolve: 'gatsby-plugin-disqus',
       options: {

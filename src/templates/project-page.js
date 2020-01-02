@@ -134,9 +134,9 @@ export default ({ data }) => {
                     ) : null
                   }
                 >
-                  <Img alt={title} fluid={banner.childImageSharp.fluid} />
+                  <Img alt={title} fluid={banner.childImageSharp.fluid} loading="eager" />
                   {photos.map(src => (
-                    <Img alt={title} fluid={src.childImageSharp.fluid} />
+                    <Img alt={title} fluid={src.childImageSharp.fluid} loading="eager" />
                   ))}
                 </Carousel>
               </Col>
