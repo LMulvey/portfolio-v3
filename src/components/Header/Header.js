@@ -108,6 +108,7 @@ const Header = ({ pathname = '' }) => {
             <HeaderButton
               title="Twitter"
               target="_blank"
+              rel="noreferrer"
               theme={{ main: '#1dcaff', contrast: 'white' }}
               link="http://www.twitter.com/LeeMulvey"
               icon="fab fa-twitter"
@@ -115,12 +116,14 @@ const Header = ({ pathname = '' }) => {
             <HeaderButton
               title="GitHub"
               target="_blank"
+              rel="noreferrer"
               link="http://www.github.com/LMulvey"
               icon="fab fa-github"
             />
             <HeaderButton
               title="StackOverflow"
               target="_blank"
+              rel="noreferrer"
               theme={{
                 main: '#FF9900',
                 contrast: 'white',

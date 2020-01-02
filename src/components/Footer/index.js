@@ -42,7 +42,8 @@ const Footer = ({ links }) => {
         <a
           key={link.href}
           href={link.href}
-          target={link.target || '_blank'}
+          target={link.target}
+          rel={link.target === '_blank' ? 'noreferrer' : undefined}
           alt={link.label}
         >
           {link.label}
