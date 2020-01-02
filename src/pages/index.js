@@ -61,7 +61,7 @@ export default function Index(props) {
               .map(
                 ({
                   node: {
-                    frontmatter: { title, bannerurl },
+                    frontmatter: { title, bannerurl, banner },
                     fields: { slug },
                   },
                 }) => (
@@ -73,7 +73,7 @@ export default function Index(props) {
                     key={title + Math.random() * 4400}
                   >
                     <Link to={`/projects${slug}`}>
-                      <ProjectWrapper imageSrc={bannerurl}>
+                      <ProjectWrapper imageSrc={banner.childImageSharp.fluid.src}>
                         <ProjectTitle>{title}</ProjectTitle>
                       </ProjectWrapper>
                     </Link>
@@ -155,7 +155,13 @@ export const pageQuery = graphql`
         node {
           frontmatter {
             title
-            bannerurl
+            banner {
+              childImageSharp {
+                fluid(maxWidth: 400) {
+                  ...GatsbyImageSharpFluid_noBase64
+                }
+              }
+            }
             date
           }
           fields {

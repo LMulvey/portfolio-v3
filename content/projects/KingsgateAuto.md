@@ -5,7 +5,7 @@ date: '2018-01-08'
 status: inprogress
 url: http://www.kingsgateauto.com
 technologies: !!seq [Wordpress, JavaScript, jQuery, Photoshop]
-bannerurl: http://res.cloudinary.com/leemulvey/image/upload/c_scale,q_85,w_600/v1515544024/Portfolio/kingsgate-portfolio.png
+banner: ./images/kingsgate-portfolio.png
 photos: !!seq []
 ---
 

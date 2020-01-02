@@ -1,6 +1,7 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import { graphql, Link } from 'gatsby';
+import Img from 'gatsby-image';
 import {
   Container,
   Row,
@@ -36,7 +37,7 @@ export default ({ data }) => {
         title,
         status,
         url,
-        bannerurl,
+        banner,
         technologies,
         photos,
       },
@@ -111,6 +112,7 @@ export default ({ data }) => {
             <Row>
               <Col align="center">
                 <Carousel
+                  wrapAround
                   renderCenterLeftControls={({ previousSlide }) =>
                     photos.length ? (
                       <CarouselButton
@@ -132,9 +134,9 @@ export default ({ data }) => {
                     ) : null
                   }
                 >
-                  <img alt={title} src={bannerurl} />
+                  <Img alt={title} fluid={banner.childImageSharp.fluid} />
                   {photos.map(src => (
-                    <img key={src} alt={title} src={src} />
+                    <Img alt={title} fluid={src.childImageSharp.fluid} />
                   ))}
                 </Carousel>
               </Col>
@@ -165,7 +167,7 @@ export default ({ data }) => {
                 .map(
                   ({
                     node: {
-                      frontmatter: { title, bannerurl },
+                      frontmatter: { title, banner },
                       fields: { slug },
                     },
                   }) => (
@@ -176,7 +178,7 @@ export default ({ data }) => {
                       key={title + Math.random() * 4400}
                     >
                       <Link to={`/projects${slug}`}>
-                        <ProjectWrapper imageSrc={bannerurl}>
+                        <ProjectWrapper imageSrc={banner.childImageSharp.fluid.src}>
                           <ProjectTileTitle>{title}</ProjectTileTitle>
                         </ProjectWrapper>
                       </Link>
@@ -340,9 +342,21 @@ export const query = graphql`
         title
         status
         url
-        bannerurl
+        banner {
+          childImageSharp {
+            fluid(maxWidth: 1088) {
+              ...GatsbyImageSharpFluid_noBase64
+            }
+          }
+        }
         technologies
-        photos
+        photos {
+          childImageSharp {
+            fluid(maxWidth: 1088) {
+              ...GatsbyImageSharpFluid_noBase64
+            }
+          }
+        }
       }
       body
     }
@@ -355,7 +369,13 @@ export const query = graphql`
         node {
           frontmatter {
             title
-            bannerurl
+            banner {
+              childImageSharp {
+                fluid(maxWidth: 400) {
+                  ...GatsbyImageSharpFluid_noBase64
+                }
+              }
+            }
             date
           }
           fields {

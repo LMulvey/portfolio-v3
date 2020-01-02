@@ -5,7 +5,7 @@ date: '2018-03-23'
 status: complete
 url: http://www.artyyc.ca
 technologies: !!seq [React, React Native, Firebase, CSS, JavaScript]
-bannerurl: http://res.cloudinary.com/leemulvey/image/upload/c_scale,q_85,w_600/v1515544024/Portfolio/artyyc-banner.png
+banner: ./images/artyyc-banner.png
 photos: !!seq []
 ---
 

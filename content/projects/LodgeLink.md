@@ -17,12 +17,12 @@ technologies:
     HTML,
     CSS,
   ]
-bannerurl: https://res.cloudinary.com/leemulvey/image/upload/c_scale,q_85,w_600/v1559186072/Portfolio/lodgelink-cover.png
+banner: ./images/lodgelink-cover.png
 photos:
   !!seq [
-    'https://res.cloudinary.com/leemulvey/image/upload/v1559186072/Portfolio/lodgelink-1.png',
-    'https://res.cloudinary.com/leemulvey/image/upload/v1559186072/Portfolio/lodgelink-2.png',
-    'https://res.cloudinary.com/leemulvey/image/upload/v1559186072/Portfolio/lodgelink-3.png',
+    './images/lodgelink-1.png',
+    './images/lodgelink-2.png',
+    './images/lodgelink-3.png',
   ]
 ---
 
