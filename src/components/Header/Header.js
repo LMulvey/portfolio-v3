@@ -158,6 +158,7 @@ const LogoContainer = styled.div`
 const SubWordmark = styled.h2`
   display: block;
   font-family: 'flood-std', sans-serif;
+  margin-top: 0;
   margin-bottom: 0;
   padding: 5px 10px;
   text-shadow: -3px -3px 0px transparent;
@@ -181,6 +182,7 @@ const Wordmark = styled.h1`
   font-size: 5rem;
   text-align: center;
   text-shadow: -5px -5px 0px white;
+  margin-top: 0;
   background: #1a2a6c;
   background: linear-gradient(
     to right,

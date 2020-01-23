@@ -37,6 +37,7 @@ export const GlobalStyles = createGlobalStyle`
   h4,
   h5,
   h6 {
+    margin-top: 3rem;
     color: #333;
     text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.15);
   }
