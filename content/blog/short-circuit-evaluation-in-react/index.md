@@ -22,16 +22,16 @@ function MyComponent(props) {
 
 That weird syntax on the fifth line is known as [short-circuit evaluation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_Operators#Short-circuit_evaluation). This pattern can be used to conditionally render components in React, however, there's a few gotchas.
 
-What do you think this piece of code will render if `headerCopy` is equal to `"My Header"`? (Remember: non-empty `strings` are considered truth-y!). Will the "My Header" be rendered inside of the emphasis tags?
+What do you think this piece of code will render if `headerCopy` is equal to `0`?
 
 ```jsx
 function MyComponent(props) {
-  const { headerCopy } = props;
+  const headerCopy = 0;
   return <div>{headerCopy && <em>{headerCopy}</em>}</div>;
 }
 ```
 
-The answer here is **no!** Why? Since `"My Header"` is a truth-y value and not one of the ones React specifically ignores, you'll run into the "short-circuit" effect of this pattern– My Header will be rendered as **plain-text** without the `em` tags.
+The answer here is **a non-emphasized 0.** Why? Since `0` is a false-y value and not one that React specifically ignores, you'll run into the "short-circuit" effect of this pattern– a zero will be rendered instead of _nothing_, which is likely what you would have wanted in this case.
 
 ## But, how do I use this properly?
 
