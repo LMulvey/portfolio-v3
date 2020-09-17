@@ -20,7 +20,7 @@ export default function Index(props) {
           <BioContainer>
             <h2>Hey, I'm Lee!</h2>
             <p>
-              I’m a Senior Web Developer with{' '}
+              I’m a Technology Lead with{' '}
               <Link to="https://www.criticalmass.com" target="_blank" rel="noreferrer">
                 Critical Mass
               </Link>{' '}
