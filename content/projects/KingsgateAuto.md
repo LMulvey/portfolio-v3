@@ -1,5 +1,6 @@
 ---
 title: Kingsgate Automotive
+slug: kingsgate-automotive
 isProject: true
 date: '2018-01-08'
 status: inprogress

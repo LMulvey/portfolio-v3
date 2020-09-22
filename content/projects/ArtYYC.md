@@ -1,5 +1,6 @@
 ---
 title: ArtYYC
+slug: art-yyc
 isProject: true
 date: '2018-03-23'
 status: complete

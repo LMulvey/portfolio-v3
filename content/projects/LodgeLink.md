@@ -1,5 +1,6 @@
 ---
 title: LodgeLink
+slug: lodgelink
 isProject: true
 date: '2019-05-24'
 status: complete

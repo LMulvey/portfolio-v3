@@ -1,5 +1,6 @@
 ---
-title: Ditidaht
+title: Learn Ditidaht
+slug: learn-ditidaht
 isProject: true
 date: '2018-08-23'
 status: ongoing

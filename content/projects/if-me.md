@@ -1,5 +1,6 @@
 ---
 title: if-me
+slug: if-me
 isProject: true
 date: '2018-10-15'
 status: contributor

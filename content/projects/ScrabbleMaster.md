@@ -1,5 +1,6 @@
 ---
 title: Scrabble Master
+slug: scrabble-master
 isProject: true
 date: '2018-09-01'
 status: inprogress

@@ -180,9 +180,8 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
   const isMdx = node.internal.type === 'Mdx';
 
   if (isMdx) {
-    const parent = getNode(node.parent);
     const isProject = node.frontmatter.isProject || false;
-    const static = node.frontmatter.static || false;
+    const isStatic = node.frontmatter.static || false;
     const slug = createFilePath({
       node,
       getNode,
@@ -198,7 +197,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     createNodeField({
       node,
       name: 'static',
-      value: static,
+      value: isStatic,
     });
     createNodeField({
       node,
@@ -233,7 +232,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     createNodeField({
       name: 'slug',
       node,
-      value: node.frontmatter.slug || slug,
+      value: `/${node.frontmatter.slug}` || slug,
     });
 
     createNodeField({

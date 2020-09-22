@@ -1,5 +1,6 @@
 ---
 title: Nissan Shopping Tools
+slug: nissan-shopping-tools
 isProject: true
 date: '2020-08-05'
 status: complete

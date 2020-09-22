@@ -8,21 +8,32 @@ import Layout from '../components/Layout';
 import Link from '../components/Layout/mdx/Link';
 import { CategoryList } from './post';
 
+const createRangeArray = (from = 0, to = 1) => {
+  const array = [];
+  for (let i = from; i <= to; i++) {
+    array.push(i);
+  }
+
+  return array;
+}
+
 const Blog = ({
   location: { pathname },
   data: { site, allMdx },
   pageContext: { pagination },
 }) => {
-  const { page, nextPagePath, previousPagePath } = pagination;
+  const { page, pageCount, nextPagePath, previousPagePath } = pagination;
+  const isNextAndPrev = nextPagePath && previousPagePath;
+  const pages = createRangeArray(1, (pageCount - 1));
   const posts = page
-    .map(id => allMdx.edges.find(edge => edge.node.id === id))
-    .filter(
-      ({
-        node: {
-          fields: { static: isStatic },
-        },
-      }) => !isStatic,
-    );
+  .map((id) => allMdx.edges.find((edge) => edge.node.id === id))
+  .filter(
+    ({
+      node: {
+        fields: { static: isStatic },
+      },
+    }) => !isStatic,
+  );
 
   return (
     <Layout site={site} pathname={pathname}>
@@ -57,13 +68,32 @@ const Blog = ({
 
       {nextPagePath || previousPagePath ? (
         <Row style={{ marginTop: '25px' }}>
-          {nextPagePath && <Link to={nextPagePath}>Next Page</Link>}
-          {nextPagePath && previousPagePath ? ' | ' : null}
+          {nextPagePath && (
+            <Link
+              style={{
+                ...(isNextAndPrev ? { marginRight: '10px' } : {}),
+              }}
+              to={nextPagePath}
+            >
+              Next Page
+            </Link>
+          )}
+          {isNextAndPrev && '|'}
           {previousPagePath && (
-            <Link to={previousPagePath}>Previous Page</Link>
+            <Link
+              style={{
+                ...(isNextAndPrev ? { marginLeft: '10px' } : {}),
+              }}
+              to={previousPagePath}
+            >
+              Previous Page
+            </Link>
           )}
         </Row>
       ) : null}
+      <Row style={{ marginTop: '15px' }}>
+        {pages.map((p) => p !== page ? <Link style={{ padding: '5px' }} to={p === 1 ? `/blog` : `/blog/${p}`}>{p}</Link> : <p>{p}</p>)}
+      </Row>
     </Layout>
   );
 };
