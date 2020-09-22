@@ -7,39 +7,18 @@ import HeaderButton from './HeaderButton';
 const descriptors = [
   'Weird Dad 👨🏼‍💻',
   'Super Weird Dad 💁🏼‍♂️',
-  'Mentor 👨🏼‍🏫',
-  'Surfboard, Surfboard 🐝',
-  'Ghost 👻',
-  'Just Frontend 🐥',
   'Bike Dad 🚲',
-  'Sunflower 🌻',
-  'Big Daddy Developer 👱🏻‍♂️',
   'Ask Me About GraphQL',
   'Secretly Loves AWS',
-  'Misser of Apollo',
   'Maybe Full Stack',
   'Master Description Writer',
-  'Ponderer of Meowing Cats',
-  'F5 Inspiration Driver',
   'Edmonton > Calgary',
-  'YYC DT Library Lover',
-  'Combat. Ready for Combat',
   'Lover of All Love 🏳️‍🌈',
-  'The Little Dark Age',
   'FIRE! Fire on the Mountain! 🔥',
   'Jazz Hands 🤗',
-  'soundcloud.com/yevyev',
-  'Your heroes may disappoint you',
-  'Jugg Main',
-  'Pond Taker',
-  'Bean Dad',
   'Manatee Researcher 🐋',
-  'Loki, go away',
-  'Why do I have a cat?',
-  '10k Grant Recipient',
-  'One-time 10km Runner',
+  'Five-time 10km Runner',
   'Hobbyist Hockey Player',
-  'Magic Tricker',
   'Just check source for all the possibilities here',
 ];
 
@@ -86,7 +65,7 @@ const Header = ({ pathname = '' }) => {
               {isBlog && <SubWordmark>Lee Mulvey's</SubWordmark>}
               <Wordmark>{title}</Wordmark>
               <Submark key={descriptor}>
-                Developer && {descriptor}
+                Developer & {descriptor}
               </Submark>
             </LogoContainer>
           </Link>

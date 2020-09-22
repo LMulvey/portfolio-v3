@@ -1,5 +1,5 @@
 ---
-title: Nissan NextGen Shopping Tools
+title: Nissan Shopping Tools
 isProject: true
 date: '2020-08-05'
 status: complete
@@ -16,16 +16,17 @@ technologies:
     CSS,
     SCSS
   ]
-banner: ./images/ngst-1.png
+banner: ./images/ngst-2.png
 photos:
   !!seq [
+    './images/ngst-1.png',
     './images/ngst-2.png',
     './images/ngst-3.png',
     './images/ngst-4.png',
   ]
 ---
 
-Nissan NextGen Shopping Tools is a re-imagining of the Shopping Tools experience for the NissanUSA website. The project consists of three applications built from the ground-up using React.js, data-driven by a GraphQL/Appsync backend orchestrating multiple data providers into one consumable schema.
+Nissan Shopping Tools is a re-imagining of the Shopping Tools experience for the NissanUSA website. The project consists of three applications built from the ground-up using React.js, data-driven by a GraphQL/Appsync backend orchestrating multiple data providers into one consumable schema.
 
 The project was built to feel more like a singular application with more data pulled upfront to provide a seamless client-side experience starting from the Filtration page, into the Configuration of your vehicle, and ending with viewing Inventory for the model you want and calculating payments. 
 
