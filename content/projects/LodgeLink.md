@@ -31,6 +31,6 @@ LodgeLink 2.0 is an online accommodations marketplace designed to make booking a
 
 We were tasked with developing the frontend application for LodgeLink 2.0 to hook up to a GraphQL-powered backend. As one of the first developers on the project, I was tasked with designing a repository strategy along with a build/development workflow that was component-driven and allowed fast changes to be implemented. I divided the project into two repositories: the component library and the frontend (NextJS) application.
 
-The component library used Storybook for rapid development and showcasing of components to allow us to work side-by-side with designers who could see the components as they were built. I utilized rollup.js to build our components and package them up to be published to NPM and consumed on the frotnend.
+The component library used Storybook for rapid development and showcasing of components to allow us to work side-by-side with designers who could see the components as they were built. I utilized rollup.js to build our components and package them up to be published to NPM and consumed on the frontend.
 
 The frontend app utilized NextJS to allow us to take full advantage of React's SSR capabilities, as well as easy integration with Apollo Client to consume the GraphQL API.
